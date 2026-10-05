@@ -1,0 +1,19 @@
+{
+  "name": "alexsandromedeiros",
+  "version": "1.0.0",
+  "description": "Alexsandro Medeiros · Consultoria Imobiliária · Creci 6469",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "alexsandro-medeiros",
+    "medeiros-corretor",
+    "consultoria-imobiliaria",
+    "creci-6469",
+    "landing-page"
+  ],
+  "author": "Medeiros Corretor",
+  "license": "UNLICENSED"
+}

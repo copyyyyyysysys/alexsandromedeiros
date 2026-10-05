@@ -168,13 +168,44 @@
     });
   }
 
-  // 4. Initialize everything on DOMContentLoaded
+  // 4. Locomotive Scroll v5 Initialization
+  function initSmoothScroll() {
+    if (prefersReducedMotion) return;
+    if (typeof LocomotiveScroll === 'undefined') return;
+
+    try {
+      const locoScroll = new LocomotiveScroll({
+        lenisOptions: {
+          wrapper: window,
+          content: document.documentElement,
+          lerp: 0.1,
+          duration: 1.2,
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: true,
+          wheelMultiplier: 1,
+          touchMultiplier: 1.5
+        }
+      });
+
+      // Update ScrollTrigger on scroll
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
+    } catch (e) {
+      console.warn('Locomotive Scroll fallback to native:', e);
+    }
+  }
+
+  // 5. Initialize everything on DOMContentLoaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
+      initSmoothScroll();
       initThreeBackground();
       initScrollAnimations();
     });
   } else {
+    initSmoothScroll();
     initThreeBackground();
     initScrollAnimations();
   }
