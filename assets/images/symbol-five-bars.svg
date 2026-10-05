@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="gold-bar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fae4a8" />
+      <stop offset="35%" stop-color="#cca848" />
+      <stop offset="70%" stop-color="#c2994c" />
+      <stop offset="100%" stop-color="#997230" />
+    </linearGradient>
+    <filter id="gold-bar-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#cca848" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <g filter="url(#gold-bar-glow)">
+    <!-- 5 rhythmic vertical bars -->
+    <rect x="8"  y="36" width="11" height="38" rx="3.5" fill="url(#gold-bar-grad)" />
+    <rect x="26" y="24" width="11" height="50" rx="3.5" fill="url(#gold-bar-grad)" />
+    <rect x="44" y="10" width="11" height="64" rx="3.5" fill="url(#gold-bar-grad)" />
+    <rect x="62" y="24" width="11" height="50" rx="3.5" fill="url(#gold-bar-grad)" />
+    <rect x="80" y="36" width="11" height="38" rx="3.5" fill="url(#gold-bar-grad)" />
+  </g>
+</svg>
