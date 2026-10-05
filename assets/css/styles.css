@@ -1,55 +1,61 @@
 /* ==========================================================================
    ALEXSANDRO MEDEIROS · CONSULTORIA IMOBILIÁRIA · CRECI 6469
-   Design System & Master Stylesheet · v1.0.0
-   Paleta Oficial Medida: VINHO (#522424) + DOURADO (#c2994c/#cca848) + BRANCO (#ffffff)
+   Design System & Master Stylesheet · v1.0.0 (Ajuste Profissional de Cor)
+   Paleta: Campo Vinho Profundo (#140b0b) + Vinho Material (#522424) + Dourado (#cca848) + Branco (#ffffff)
+   Régua do Acervo: Campo com V <= 12% (faixa 6-10%), vinho como material e luz pontual
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    1. CSS Custom Properties / Design Tokens
    -------------------------------------------------------------------------- */
 :root {
-  /* Brand Wine Family (Field H 0° · S 56% · V 32%) */
-  --color-wine-abyss:   #1f0a0a; /* 0° 68% 12% */
-  --color-wine-deep:    #2e1212; /* 0° 59% 18% */
-  --color-wine-dark:    #3f1a1a; /* 0° 59% 25% */
-  --color-wine-base:    #522424; /* 0° 56% 32% - Campo Oficial */
-  --color-wine-surface: #632e2e; /* 0° 54% 39% */
-  --color-wine-light:   #753737; /* 0° 53% 46% */
-  --color-wine-glow:    rgba(117, 55, 55, 0.45);
+  /* Campo Profundo com Tinta Vinho (H 0° · S 45% · V 7.8% - dentro da faixa 6-10% do acervo) */
+  --color-field:         #140b0b; /* H 0° S 45% V 7.8% - Campo Principal */
+  --color-field-deep:    #0c0606; /* H 0° S 50% V 4.7% - Rodapé e Profundidade */
+  
+  /* Degraus de Superfície no mesmo H (2-3 degraus de V acima do campo) */
+  --color-surface-subtle:   #1c1010; /* H 0° S 43% V 11.0% - Degrau 1 (+3.2% V) */
+  --color-surface-elevated: #261515; /* H 0° S 45% V 14.9% - Degrau 2 (+3.9% V) */
+  --color-surface-card:     #2f1717; /* H 0° S 51% V 18.4% - Degrau 3 */
 
-  /* Brand Gold Family (Symbol H 38-44° · S 55-65% · V 74-83%) */
-  --color-gold-deep:    #997230; /* H 38° S 69% V 60% */
-  --color-gold-base:    #c2994c; /* H 39° S 61% V 76% - Âncora Medida */
-  --color-gold-peak:    #cca848; /* H 44° S 65% V 80% - Pico Medido */
-  --color-gold-light:   #deb86a; /* H 40° S 53% V 87% */
-  --color-gold-shine:   #fae4a8; /* H 44° S 33% V 98% */
-  --color-gold-halo:    rgba(204, 168, 72, 0.32);
-  --color-gold-border:  rgba(194, 153, 76, 0.28);
-  --color-gold-hairline:rgba(204, 168, 72, 0.18);
+  /* Vinho Oficial do Cartão como MATERIAL (V 32.2% - restrito a <= 3 superfícies focais) */
+  --color-wine-material:      #522424; /* H 0° S 56% V 32.2% - Vinho Oficial Medido */
+  --color-wine-material-rich: #5e2828; /* H 0° S 57% V 36.8% */
+  --color-wine-glow:          rgba(82, 36, 36, 0.25);
 
-  /* Typography / Text Colors */
-  --color-white:        #ffffff; /* Contraste 12.83:1 contra o vinho */
-  --color-cream:        #f7f2ea; /* Contraste 10.58:1 contra o vinho */
-  --color-text-primary: #ffffff;
-  --color-text-secondary: rgba(247, 242, 234, 0.85);
-  --color-text-muted:   rgba(247, 242, 234, 0.68);
-  --color-text-dim:     rgba(247, 242, 234, 0.52);
+  /* Família do Dourado (Símbolo Oficial e Luz: H 38-44° · S 55-65% · V 74-83%) */
+  --color-gold-deep:     #997230; /* H 38° S 69% V 60% */
+  --color-gold-base:     #c2994c; /* H 39° S 61% V 76% - Âncora Medida */
+  --color-gold-peak:     #cca848; /* H 44° S 65% V 80% - Pico Luminoso */
+  --color-gold-light:    #deb86a; /* H 40° S 53% V 87% */
+  --color-gold-shine:    #fae4a8; /* H 44° S 33% V 98% */
+  --color-gold-halo:     rgba(204, 168, 72, 0.28);
+  --color-gold-border:   rgba(194, 153, 76, 0.24);
+  --color-gold-hairline: rgba(204, 168, 72, 0.15);
 
-  /* Typography Families */
+  /* Tipografia & Textos (Contraste 20.4:1 branco/campo, 18.2:1 creme/campo) */
+  --color-white:          #ffffff;
+  --color-cream:          #f7f2ea;
+  --color-text-primary:   #ffffff;
+  --color-text-secondary: rgba(247, 242, 234, 0.84);
+  --color-text-muted:     rgba(247, 242, 234, 0.65);
+  --color-text-dim:       rgba(247, 242, 234, 0.48);
+
+  /* Famílias Tipográficas */
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body:    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Header Heights */
+  /* Alturas do Topo */
   --header-height-mobile:  64px;
   --header-height-desktop: 84px;
 
-  /* Transitions */
+  /* Transições Suaves */
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-normal: 0.3s;
 }
 
 /* --------------------------------------------------------------------------
-   2. Reset & Document Setup
+   2. Reset & Estrutura do Documento
    -------------------------------------------------------------------------- */
 *,
 *::before,
@@ -64,7 +70,7 @@ html {
   scroll-behavior: smooth;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  background-color: var(--color-wine-base);
+  background-color: var(--color-field);
   color: var(--color-text-primary);
   min-height: 100%;
 }
@@ -74,27 +80,27 @@ body {
   font-size: 1rem; /* 16px */
   line-height: 1.6;
   color: var(--color-text-secondary);
-  background-color: var(--color-wine-base);
+  background-color: var(--color-field);
   background-image: 
-    radial-gradient(ellipse 90% 70% at 50% 0%, rgba(117, 55, 55, 0.35) 0%, transparent 70%),
-    radial-gradient(circle 800px at 85% 30%, rgba(99, 46, 46, 0.4) 0%, transparent 60%),
-    radial-gradient(circle 900px at 15% 75%, rgba(63, 26, 26, 0.5) 0%, transparent 70%),
-    linear-gradient(180deg, var(--color-wine-dark) 0%, var(--color-wine-base) 18%, var(--color-wine-deep) 65%, var(--color-wine-abyss) 100%);
+    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(82, 36, 36, 0.18) 0%, transparent 65%),
+    radial-gradient(circle 600px at 85% 25%, rgba(46, 18, 18, 0.22) 0%, transparent 55%),
+    radial-gradient(circle 700px at 15% 70%, rgba(38, 15, 15, 0.25) 0%, transparent 60%),
+    linear-gradient(180deg, var(--color-field) 0%, var(--color-field) 70%, var(--color-field-deep) 100%);
   background-attachment: scroll;
   overflow-x: hidden;
   position: relative;
   width: 100%;
 }
 
-/* Skip link for keyboard navigation */
+/* Skip link de acessibilidade (C-255: teto de peso 600) */
 .skip-link {
   position: absolute;
   top: -100px;
   left: 16px;
   background: var(--color-gold-peak);
-  color: var(--color-wine-deep);
+  color: var(--color-field-deep);
   padding: 12px 20px;
-  font-weight: 700;
+  font-weight: 600;
   border-radius: 4px;
   z-index: 1000;
   transition: top 0.2s var(--ease-smooth);
@@ -104,7 +110,7 @@ body {
   top: 16px;
 }
 
-/* Links & Media */
+/* Links & Mídia */
 a {
   color: inherit;
   text-decoration: none;
@@ -118,7 +124,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   3. Background Ambience & Lighting Canvas
+   3. Atmosfera & Canvas de Luz (Hierarquia em 3 Camadas)
    -------------------------------------------------------------------------- */
 .bg-canvas {
   position: fixed;
@@ -128,7 +134,7 @@ svg {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.65;
+  opacity: 0.55;
 }
 
 .ambient-glow {
@@ -140,31 +146,31 @@ svg {
 }
 
 .ambient-glow-top {
-  top: -150px;
-  right: -100px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(204, 168, 72, 0.12) 0%, rgba(82, 36, 36, 0) 70%);
+  top: -140px;
+  right: -80px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(204, 168, 72, 0.08) 0%, transparent 70%);
 }
 
 .ambient-glow-middle {
   top: 45%;
-  left: -200px;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(117, 55, 55, 0.25) 0%, rgba(82, 36, 36, 0) 70%);
+  left: -180px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(82, 36, 36, 0.16) 0%, transparent 70%);
 }
 
 .ambient-glow-bottom {
-  bottom: -100px;
+  bottom: -80px;
   right: 10%;
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(circle, rgba(204, 168, 72, 0.08) 0%, rgba(46, 18, 18, 0) 70%);
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(204, 168, 72, 0.06) 0%, transparent 70%);
 }
 
 /* --------------------------------------------------------------------------
-   4. Header & Top Bar (6B: Marca Flexível + 1 CTA Rígido)
+   4. Header & Topo (Marca Flexível + 1 CTA Rígido)
    -------------------------------------------------------------------------- */
 .site-header {
   position: sticky;
@@ -173,7 +179,7 @@ svg {
   width: 100%;
   z-index: 100;
   min-height: var(--header-height-mobile);
-  background-color: rgba(82, 36, 36, 0.94);
+  background-color: rgba(20, 11, 11, 0.95);
   border-bottom: 1px solid var(--color-gold-hairline);
   padding-inline: max(16px, env(safe-area-inset-left));
   padding-right: max(16px, env(safe-area-inset-right));
@@ -193,7 +199,7 @@ svg {
   min-width: 0;
 }
 
-/* Brand cluster: flexible, min-width 0 */
+/* Cluster da Marca: flexível, min-width 0 */
 .brand-cluster {
   flex: 1 1 auto;
   min-width: 0;
@@ -228,7 +234,7 @@ svg {
 .brand-wordmark {
   font-family: var(--font-display);
   font-size: 0.95rem; /* ~15px */
-  font-weight: 700;
+  font-weight: 600; /* C-255: teto 600 */
   letter-spacing: 0.05em;
   color: var(--color-white);
   white-space: nowrap;
@@ -248,7 +254,7 @@ svg {
   text-transform: uppercase;
 }
 
-/* Header action cluster: rigid */
+/* Cluster de ação do topo: rígido */
 .header-action-wrap {
   flex: 0 0 auto;
   display: flex;
@@ -256,7 +262,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   5. Buttons & Continuous Shiny Sweep Glow
+   5. Botões & Shiny Sweep Glow Contínuo (Ponto Focal)
    -------------------------------------------------------------------------- */
 .btn {
   display: inline-flex;
@@ -265,7 +271,7 @@ svg {
   gap: 8px;
   font-family: var(--font-body);
   font-size: 0.9375rem; /* 15px */
-  font-weight: 600;
+  font-weight: 600; /* C-255: teto 600 */
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
@@ -291,22 +297,22 @@ svg {
   flex-shrink: 0;
 }
 
-/* Header WhatsApp Button */
+/* Botão WhatsApp do Topo */
 .btn-header {
   min-height: 48px; /* Toque mínimo 48px */
   padding: 10px 18px;
   background: linear-gradient(135deg, var(--color-gold-peak) 0%, var(--color-gold-base) 100%);
-  color: var(--color-wine-deep);
+  color: var(--color-field-deep);
   border: 1px solid var(--color-gold-light);
-  box-shadow: 0 4px 14px rgba(204, 168, 72, 0.22);
+  box-shadow: 0 4px 14px rgba(204, 168, 72, 0.2);
 }
 
 .btn-header .btn-text {
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.02em;
 }
 
-/* Continuous Shiny Sweep Glow */
+/* Shiny Sweep Glow Automático */
 .btn-shiny {
   position: relative;
 }
@@ -320,7 +326,7 @@ svg {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.42) 50%,
     transparent 100%
   );
   transform: skewX(-22deg);
@@ -340,18 +346,18 @@ svg {
   }
 }
 
-/* Primary CTA Button (Hero & Final CTA) */
+/* Botão Primário CTA (Hero & Fechamento) */
 .btn-primary {
   min-height: 52px;
   padding: 14px 28px;
-  background: linear-gradient(135deg, #e6c875 0%, var(--color-gold-peak) 40%, var(--color-gold-base) 100%);
-  color: var(--color-wine-deep);
+  background: linear-gradient(135deg, #e6c875 0%, var(--color-gold-peak) 45%, var(--color-gold-base) 100%);
+  color: var(--color-field-deep);
   font-size: 1rem; /* 16px */
-  font-weight: 700;
+  font-weight: 600; /* C-255: teto 600 */
   border: none;
   box-shadow: 
-    0 4px 20px rgba(204, 168, 72, 0.32),
-    0 1px 3px rgba(0, 0, 0, 0.2);
+    0 4px 20px rgba(204, 168, 72, 0.28),
+    0 1px 3px rgba(0, 0, 0, 0.35);
   z-index: 1;
 }
 
@@ -363,7 +369,7 @@ svg {
   z-index: 2;
 }
 
-/* Conic Ring Border Glow */
+/* Anel Cônico de Brilho no CTA Principal */
 .btn-conic {
   position: relative;
   padding: 2px;
@@ -383,7 +389,7 @@ svg {
   );
   animation: spinConic 5s linear infinite;
   z-index: 0;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 @keyframes spinConic {
@@ -395,11 +401,11 @@ svg {
   }
 }
 
-/* Secondary Button (Instagram) */
+/* Botão Secundário (Instagram) */
 .btn-secondary {
   min-height: 52px;
   padding: 13px 24px;
-  background: rgba(99, 46, 46, 0.4);
+  background: rgba(38, 21, 21, 0.6);
   color: var(--color-white);
   border: 1px solid var(--color-gold-border);
   backdrop-filter: blur(4px);
@@ -408,7 +414,7 @@ svg {
 }
 
 .btn-secondary:hover {
-  background: rgba(117, 55, 55, 0.65);
+  background: rgba(82, 36, 36, 0.4);
   border-color: var(--color-gold-peak);
   color: var(--color-white);
 }
@@ -420,7 +426,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   6. Main Content & Layout
+   6. Conteúdo Principal & Layout
    -------------------------------------------------------------------------- */
 .main-content {
   position: relative;
@@ -429,7 +435,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   7. Hero Section (6A, 6C: Primeira Dobra Monumental Sem Cartão)
+   7. Hero Section (Primeira Dobra Monumental com Material e Luz)
    -------------------------------------------------------------------------- */
 .hero-section {
   width: 100%;
@@ -457,16 +463,17 @@ svg {
   text-align: left;
 }
 
-/* Credential Tag */
+/* Superfície 1 com Vinho-Material (V >= 25%): Credencial Tag */
 .hero-credential-tag {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 18px;
   padding: 6px 14px;
-  background: rgba(82, 36, 36, 0.7);
+  background: rgba(82, 36, 36, 0.28); /* Vinho material pontual */
   border: 1px solid var(--color-gold-border);
   border-radius: 9999px;
+  box-shadow: inset 0 1px 0 rgba(204, 168, 72, 0.15);
 }
 
 .gold-bullet {
@@ -485,13 +492,13 @@ svg {
   letter-spacing: 0.04em;
 }
 
-/* Hero Monumental Title (6A clamp) */
+/* Título Monumental do Hero (C-255: teto de peso 600) */
 .hero-title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 7.8vw, 4rem); /* 32px a 64px */
   line-height: 1.14;
   letter-spacing: -0.025em;
-  font-weight: 800;
+  font-weight: 600; /* C-255: teto 600 */
   color: var(--color-white);
   margin-bottom: 20px;
   display: flex;
@@ -512,7 +519,7 @@ svg {
   margin-top: 6px;
 }
 
-/* Hero Supporting Copy (max 2 lines in mobile) */
+/* Texto de Apoio do Hero */
 .hero-support {
   font-family: var(--font-body);
   font-size: 1.0625rem; /* 17px */
@@ -522,7 +529,7 @@ svg {
   margin-bottom: 28px;
 }
 
-/* Hero CTA Cluster */
+/* Cluster de CTA do Hero */
 .hero-cta-cluster {
   display: flex;
   flex-wrap: wrap;
@@ -532,7 +539,7 @@ svg {
   width: 100%;
 }
 
-/* Direct Phone Link */
+/* Telefone Visível em Texto */
 .hero-direct-phone {
   display: flex;
   align-items: center;
@@ -558,7 +565,7 @@ svg {
   border-color: var(--color-gold-shine);
 }
 
-/* Hero Visual & Photo (Frente 9: Foto original intacta, luz de contorno) */
+/* Superfície 2 com Vinho-Material (V >= 25%): Moldura da Foto */
 .hero-visual {
   width: 100%;
   display: flex;
@@ -574,10 +581,12 @@ svg {
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid var(--color-gold-border);
-  background: var(--color-wine-dark);
+  border-top: 1px solid var(--color-gold-peak); /* Fio de luz na aresta superior */
+  background: var(--color-surface-elevated);
   box-shadow: 
-    0 16px 40px rgba(0, 0, 0, 0.4),
-    0 0 50px rgba(204, 168, 72, 0.12);
+    0 16px 40px rgba(0, 0, 0, 0.55),
+    0 0 35px rgba(82, 36, 36, 0.25),
+    inset 0 1px 0 rgba(204, 168, 72, 0.3);
 }
 
 .hero-image-halo {
@@ -586,7 +595,7 @@ svg {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 50% 20%, rgba(204, 168, 72, 0.15) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 20%, rgba(204, 168, 72, 0.12) 0%, transparent 60%);
   pointer-events: none;
   z-index: 1;
 }
@@ -605,7 +614,7 @@ svg {
   left: 0;
   right: 0;
   padding: 16px 20px;
-  background: linear-gradient(180deg, transparent 0%, rgba(31, 10, 10, 0.95) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(12, 6, 6, 0.95) 100%);
   display: flex;
   flex-direction: column;
   z-index: 2;
@@ -614,7 +623,7 @@ svg {
 .caption-name {
   font-family: var(--font-display);
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-white);
 }
 
@@ -626,7 +635,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   8. Section Dividers (Luz e Fios Sem Caixas Cinzas)
+   8. Divisores de Seção (Luz e Fios Translúcidos)
    -------------------------------------------------------------------------- */
 .section-divider {
   width: 100%;
@@ -655,7 +664,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   9. Continuous Flow Sections (Frente 1: Sem Containers Fechados)
+   9. Seções Contínuas (Sem Containers Fechados)
    -------------------------------------------------------------------------- */
 .section-flow {
   width: 100%;
@@ -678,7 +687,7 @@ svg {
   display: block;
   font-family: var(--font-body);
   font-size: 0.8125rem; /* 13px */
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.12em;
   color: var(--color-gold-peak);
   text-transform: uppercase;
@@ -690,7 +699,7 @@ svg {
   font-size: clamp(1.5rem, 5.2vw, 2.375rem); /* 24px a 38px */
   line-height: 1.2;
   letter-spacing: -0.02em;
-  font-weight: 700;
+  font-weight: 600; /* C-255: teto 600 */
   color: var(--color-white);
   margin-bottom: 14px;
 }
@@ -702,7 +711,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   10. Pillars Grid (Seção 01)
+   10. Pilares de Atuação (Seção 01)
    -------------------------------------------------------------------------- */
 .pillars-grid {
   display: grid;
@@ -714,7 +723,7 @@ svg {
   position: relative;
   padding: 24px;
   border-top: 1px solid var(--color-gold-border);
-  background: linear-gradient(180deg, rgba(99, 46, 46, 0.22) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(38, 21, 21, 0.35) 0%, transparent 100%);
   display: flex;
   flex-direction: column;
   transition: border-color var(--duration-normal) ease;
@@ -727,7 +736,7 @@ svg {
 .pillar-number {
   font-family: var(--font-display);
   font-size: 1.125rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-gold-peak);
   margin-bottom: 10px;
   letter-spacing: 0.05em;
@@ -736,7 +745,7 @@ svg {
 .pillar-title {
   font-family: var(--font-display);
   font-size: 1.25rem; /* 20px */
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-white);
   margin-bottom: 10px;
   line-height: 1.25;
@@ -749,7 +758,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   11. Steps Flow (Seção 02: Consultoria Imobiliária)
+   11. Etapas de Consultoria (Seção 02)
    -------------------------------------------------------------------------- */
 .steps-flow {
   display: grid;
@@ -761,7 +770,7 @@ svg {
   position: relative;
   padding: 24px;
   border-left: 2px solid var(--color-gold-peak);
-  background: linear-gradient(90deg, rgba(99, 46, 46, 0.25) 0%, transparent 100%);
+  background: linear-gradient(90deg, rgba(38, 21, 21, 0.35) 0%, transparent 100%);
   transition: transform var(--duration-normal) var(--ease-smooth);
 }
 
@@ -775,7 +784,7 @@ svg {
 .step-badge {
   font-family: var(--font-body);
   font-size: 0.75rem; /* 12px */
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-gold-peak);
@@ -789,7 +798,7 @@ svg {
 .step-title {
   font-family: var(--font-display);
   font-size: 1.25rem; /* 20px */
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-white);
   margin-bottom: 10px;
   line-height: 1.3;
@@ -802,7 +811,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   12. Section 03: Direct Contact & Conversion
+   12. Seção 03: Superfície 3 com Vinho-Material (Painel de Fechamento)
    -------------------------------------------------------------------------- */
 .section-contact {
   padding-block: 56px 64px;
@@ -817,11 +826,12 @@ svg {
   align-items: center;
   padding: 40px 24px;
   border: 1px solid var(--color-gold-border);
+  border-top: 1px solid var(--color-gold-peak); /* Fio de luz na aresta superior */
   border-radius: 24px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(117, 55, 55, 0.4) 0%, rgba(46, 18, 18, 0.6) 100%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(82, 36, 36, 0.35) 0%, rgba(20, 11, 11, 0.95) 100%);
   box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(204, 168, 72, 0.25);
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(204, 168, 72, 0.28);
 }
 
 .contact-title {
@@ -868,12 +878,12 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   13. Footer (Marca + Legal)
+   13. Rodapé
    -------------------------------------------------------------------------- */
 .site-footer {
   width: 100%;
   border-top: 1px solid var(--color-gold-hairline);
-  background-color: var(--color-wine-deep);
+  background-color: var(--color-field-deep);
   padding-block: 48px 36px;
   padding-inline: max(16px, env(safe-area-inset-left));
   padding-right: max(16px, env(safe-area-inset-right));
@@ -942,7 +952,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   14. 404 Error Page
+   14. Página de Erro 404
    -------------------------------------------------------------------------- */
 .error-page {
   display: flex;
@@ -951,6 +961,7 @@ svg {
   min-height: 100vh;
   padding: 24px;
   text-align: center;
+  background-color: var(--color-field);
 }
 
 .error-content {
@@ -967,7 +978,7 @@ svg {
 .error-code {
   font-family: var(--font-display);
   font-size: 5rem;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1;
   color: var(--color-gold-peak);
   margin-bottom: 12px;
@@ -976,6 +987,7 @@ svg {
 .error-title {
   font-family: var(--font-display);
   font-size: 1.75rem;
+  font-weight: 600;
   color: var(--color-white);
   margin-bottom: 12px;
 }
@@ -987,7 +999,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   15. Responsive Breakpoints (Desktop & Tablet)
+   15. Breakpoints Responsivos (Tablet & Desktop)
    -------------------------------------------------------------------------- */
 @media (min-width: 600px) {
   .pillars-grid {
@@ -1044,7 +1056,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   16. Reduced Motion Support (Frente 5 / C-94: Nunca 0.01ms)
+   16. Suporte a Reduced Motion (C-94: Nunca 0.01ms)
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *,

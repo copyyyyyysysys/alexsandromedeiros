@@ -44,9 +44,9 @@
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
-    // Official gold: #cca848 (0.80, 0.66, 0.28) and wine glow: #753737 (0.46, 0.22, 0.22)
+    // Official gold: #cca848 and subtle brand wine: #522424
     const goldColor = new THREE.Color('#cca848');
-    const wineColor = new THREE.Color('#753737');
+    const wineColor = new THREE.Color('#522424');
 
     for (let i = 0; i < particleCount; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 800;
@@ -63,10 +63,10 @@
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const material = new THREE.PointsMaterial({
-      size: 3.5,
+      size: 3,
       vertexColors: true,
       transparent: true,
-      opacity: 0.5,
+      opacity: 0.35,
       blending: THREE.AdditiveBlending
     });
 
