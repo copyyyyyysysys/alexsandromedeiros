@@ -1,47 +1,48 @@
 /* ==========================================================================
    ALEXSANDRO MEDEIROS · CONSULTORIA IMOBILIÁRIA · CRECI 6469
-   Design System & Master Stylesheet · v1.0.0 (Ajuste Profissional de Cor)
-   Paleta: Campo Vinho Profundo (#140b0b) + Vinho Material (#522424) + Dourado (#cca848) + Branco (#ffffff)
-   Régua do Acervo: Campo com V <= 12% (faixa 6-10%), vinho como material e luz pontual
+   Design System & Master Stylesheet · v1.0.0 (Tema Claro & Editorial de Luxo)
+   Inspiração do Acervo: quintadellarte.pages.dev (campo claro, tinta vinho, material nobre)
+   Paleta: Campo Branco (#ffffff) + Tinta Vinho (#522424) + Bloco Focal (#2b1111) + Dourado (#c2994c/#cca848)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. CSS Custom Properties / Design Tokens
+   1. Design Tokens / Custom Properties
    -------------------------------------------------------------------------- */
 :root {
-  /* Campo Profundo com Tinta Vinho (H 0° · S 45% · V 7.8% - dentro da faixa 6-10% do acervo) */
-  --color-field:         #140b0b; /* H 0° S 45% V 7.8% - Campo Principal */
-  --color-field-deep:    #0c0606; /* H 0° S 50% V 4.7% - Rodapé e Profundidade */
+  /* Campo Claro Contínuo (Branco Gráfico & Off-White Papel) */
+  --color-field:         #ffffff; /* Campo Principal */
+  --color-field-warm:    #faf7f2; /* Off-White Papel Editorial */
+  --color-field-subtle:  #f4efe8; /* Apoio Sutil */
   
-  /* Degraus de Superfície no mesmo H (2-3 degraus de V acima do campo) */
-  --color-surface-subtle:   #1c1010; /* H 0° S 43% V 11.0% - Degrau 1 (+3.2% V) */
-  --color-surface-elevated: #261515; /* H 0° S 45% V 14.9% - Degrau 2 (+3.9% V) */
-  --color-surface-card:     #2f1717; /* H 0° S 51% V 18.4% - Degrau 3 */
+  /* Tinta (Vinho Oficial do Cartão e Tons Derivados para Leitura) */
+  --color-ink-primary:   #522424; /* Vinho Oficial Medido · Contraste 12.83:1 */
+  --color-ink-lead:      #381717; /* Vinho Profundo para Destaques · Contraste 16.2:1 */
+  --color-ink-body:      #472828; /* Corpo de Leitura Confortável · Contraste 10.4:1 */
+  --color-ink-muted:     #6b4e4e; /* Apoio e Rótulos · Contraste 6.4:1 */
+  --color-ink-dim:       #8c6f6e; /* Legendas Discretas · Contraste 4.2:1 */
 
-  /* Vinho Oficial do Cartão como MATERIAL (V 32.2% - restrito a <= 3 superfícies focais) */
-  --color-wine-material:      #522424; /* H 0° S 56% V 32.2% - Vinho Oficial Medido */
-  --color-wine-material-rich: #5e2828; /* H 0° S 57% V 36.8% */
-  --color-wine-glow:          rgba(82, 36, 36, 0.25);
+  /* Linhas & Fios Quentes (Zero Cinzas de Biblioteca) */
+  --color-line-subtle:   rgba(82, 36, 36, 0.08);
+  --color-line-medium:   rgba(82, 36, 36, 0.14);
+  --color-line-focus:    rgba(82, 36, 36, 0.28);
 
-  /* Família do Dourado (Símbolo Oficial e Luz: H 38-44° · S 55-65% · V 74-83%) */
-  --color-gold-deep:     #997230; /* H 38° S 69% V 60% */
-  --color-gold-base:     #c2994c; /* H 39° S 61% V 76% - Âncora Medida */
-  --color-gold-peak:     #cca848; /* H 44° S 65% V 80% - Pico Luminoso */
-  --color-gold-light:    #deb86a; /* H 40° S 53% V 87% */
-  --color-gold-shine:    #fae4a8; /* H 44° S 33% V 98% */
-  --color-gold-halo:     rgba(204, 168, 72, 0.28);
-  --color-gold-border:   rgba(194, 153, 76, 0.24);
-  --color-gold-hairline: rgba(204, 168, 72, 0.15);
+  /* Bloco Focal Escuro Único (#contato) */
+  --color-focal-bg:      #2b1111; /* Vinho Profundo · Contraste 17.63:1 com branco */
+  --color-focal-lead:    #ffffff;
+  --color-focal-text:    rgba(247, 242, 234, 0.88);
+  --color-focal-muted:   rgba(247, 242, 234, 0.68);
 
-  /* Tipografia & Textos (Contraste 20.4:1 branco/campo, 18.2:1 creme/campo) */
-  --color-white:          #ffffff;
-  --color-cream:          #f7f2ea;
-  --color-text-primary:   #ffffff;
-  --color-text-secondary: rgba(247, 242, 234, 0.84);
-  --color-text-muted:     rgba(247, 242, 234, 0.65);
-  --color-text-dim:       rgba(247, 242, 234, 0.48);
+  /* Família do Dourado (Símbolo Oficial e Luz: H 38-44°) */
+  --color-gold-deep:     #997230;
+  --color-gold-base:     #c2994c; /* Âncora do Símbolo */
+  --color-gold-peak:     #cca848; /* Pico Luminoso */
+  --color-gold-light:    #deb86a;
+  --color-gold-shine:    #fae4a8;
+  --color-gold-border:   rgba(194, 153, 76, 0.32);
+  --color-gold-hairline: rgba(194, 153, 76, 0.18);
+  --color-gold-halo:     rgba(204, 168, 72, 0.22);
 
-  /* Famílias Tipográficas */
+  /* Tipografia */
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body:    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
@@ -49,13 +50,16 @@
   --header-height-mobile:  64px;
   --header-height-desktop: 84px;
 
-  /* Transições Suaves */
-  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-  --duration-normal: 0.3s;
+  /* Transições & Raios Elegantes (C-115: sem pílula 9999 genérica) */
+  --radius-btn:    10px;
+  --radius-card:   16px;
+  --radius-pill:   20px;
+  --ease-smooth:   cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-base: 0.3s;
 }
 
 /* --------------------------------------------------------------------------
-   2. Reset & Estrutura do Documento
+   2. Reset & Estrutura
    -------------------------------------------------------------------------- */
 *,
 *::before,
@@ -71,7 +75,7 @@ html {
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   background-color: var(--color-field);
-  color: var(--color-text-primary);
+  color: var(--color-ink-body);
   min-height: 100%;
 }
 
@@ -79,13 +83,12 @@ body {
   font-family: var(--font-body);
   font-size: 1rem; /* 16px */
   line-height: 1.6;
-  color: var(--color-text-secondary);
+  color: var(--color-ink-body);
   background-color: var(--color-field);
   background-image: 
-    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(82, 36, 36, 0.18) 0%, transparent 65%),
-    radial-gradient(circle 600px at 85% 25%, rgba(46, 18, 18, 0.22) 0%, transparent 55%),
-    radial-gradient(circle 700px at 15% 70%, rgba(38, 15, 15, 0.25) 0%, transparent 60%),
-    linear-gradient(180deg, var(--color-field) 0%, var(--color-field) 70%, var(--color-field-deep) 100%);
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(250, 247, 242, 0.8) 0%, transparent 70%),
+    radial-gradient(circle 700px at 90% 20%, rgba(244, 239, 232, 0.5) 0%, transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #ffffff 75%, var(--color-field-warm) 100%);
   background-attachment: scroll;
   overflow-x: hidden;
   position: relative;
@@ -97,11 +100,11 @@ body {
   position: absolute;
   top: -100px;
   left: 16px;
-  background: var(--color-gold-peak);
-  color: var(--color-field-deep);
+  background: var(--color-ink-primary);
+  color: #ffffff;
   padding: 12px 20px;
   font-weight: 600;
-  border-radius: 4px;
+  border-radius: 6px;
   z-index: 1000;
   transition: top 0.2s var(--ease-smooth);
   text-decoration: none;
@@ -124,7 +127,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   3. Atmosfera & Canvas de Luz (Hierarquia em 3 Camadas)
+   3. Atmosfera & Canvas de Luz Sutil
    -------------------------------------------------------------------------- */
 .bg-canvas {
   position: fixed;
@@ -134,7 +137,7 @@ svg {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.55;
+  opacity: 0.35;
 }
 
 .ambient-glow {
@@ -142,35 +145,35 @@ svg {
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
-  filter: blur(80px);
+  filter: blur(90px);
 }
 
 .ambient-glow-top {
-  top: -140px;
+  top: -160px;
   right: -80px;
   width: 480px;
   height: 480px;
-  background: radial-gradient(circle, rgba(204, 168, 72, 0.08) 0%, transparent 70%);
-}
-
-.ambient-glow-middle {
-  top: 45%;
-  left: -180px;
-  width: 520px;
-  height: 520px;
-  background: radial-gradient(circle, rgba(82, 36, 36, 0.16) 0%, transparent 70%);
-}
-
-.ambient-glow-bottom {
-  bottom: -80px;
-  right: 10%;
-  width: 460px;
-  height: 460px;
   background: radial-gradient(circle, rgba(204, 168, 72, 0.06) 0%, transparent 70%);
 }
 
+.ambient-glow-middle {
+  top: 40%;
+  left: -180px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(244, 239, 232, 0.7) 0%, transparent 70%);
+}
+
+.ambient-glow-bottom {
+  bottom: -60px;
+  right: 5%;
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(204, 168, 72, 0.05) 0%, transparent 70%);
+}
+
 /* --------------------------------------------------------------------------
-   4. Header & Topo (Marca Flexível + 1 CTA Rígido)
+   4. Header & Topo Claro (Marca em Tinta + 1 Ação Sólida)
    -------------------------------------------------------------------------- */
 .site-header {
   position: sticky;
@@ -179,13 +182,15 @@ svg {
   width: 100%;
   z-index: 100;
   min-height: var(--header-height-mobile);
-  background-color: rgba(20, 11, 11, 0.95);
-  border-bottom: 1px solid var(--color-gold-hairline);
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-line-subtle);
   padding-inline: max(16px, env(safe-area-inset-left));
   padding-right: max(16px, env(safe-area-inset-right));
   display: flex;
   align-items: center;
-  transition: background-color var(--duration-normal) ease;
+  transition: background-color var(--duration-base) ease, border-color var(--duration-base) ease;
 }
 
 .site-header-inner {
@@ -199,13 +204,13 @@ svg {
   min-width: 0;
 }
 
-/* Cluster da Marca: flexível, min-width 0 */
+/* Cluster da Marca em Tinta: flexível, min-width 0 */
 .brand-cluster {
   flex: 1 1 auto;
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
 }
 
@@ -234,9 +239,9 @@ svg {
 .brand-wordmark {
   font-family: var(--font-display);
   font-size: 0.95rem; /* ~15px */
-  font-weight: 600; /* C-255: teto 600 */
+  font-weight: 600; /* C-255: teto de peso 600 */
   letter-spacing: 0.05em;
-  color: var(--color-white);
+  color: var(--color-ink-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -247,14 +252,14 @@ svg {
   font-size: 0.65rem; /* ~10.5px */
   font-weight: 600;
   letter-spacing: 0.14em;
-  color: var(--color-gold-peak);
+  color: var(--color-gold-deep);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-transform: uppercase;
 }
 
-/* Cluster de ação do topo: rígido */
+/* Ação do Topo: rígida */
 .header-action-wrap {
   flex: 0 0 auto;
   display: flex;
@@ -262,7 +267,7 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   5. Botões & Shiny Sweep Glow Contínuo (Ponto Focal)
+   5. Botões & Shiny Sweep Glow (Ponto Focal)
    -------------------------------------------------------------------------- */
 .btn {
   display: inline-flex;
@@ -275,10 +280,10 @@ svg {
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 9999px;
+  border-radius: var(--radius-btn);
   position: relative;
   overflow: hidden;
-  transition: transform 0.25s var(--ease-smooth), box-shadow 0.25s var(--ease-smooth);
+  transition: transform 0.25s var(--ease-smooth), box-shadow 0.25s var(--ease-smooth), background-color 0.25s var(--ease-smooth);
   user-select: none;
 }
 
@@ -287,7 +292,7 @@ svg {
 }
 
 .btn:focus-visible {
-  outline: 2px solid var(--color-gold-light);
+  outline: 2px solid var(--color-ink-primary);
   outline-offset: 3px;
 }
 
@@ -297,14 +302,19 @@ svg {
   flex-shrink: 0;
 }
 
-/* Botão WhatsApp do Topo */
+/* Botão WhatsApp do Topo: Vinho Sólido com Texto Branco (Contraste 12.83:1) */
 .btn-header {
   min-height: 48px; /* Toque mínimo 48px */
   padding: 10px 18px;
-  background: linear-gradient(135deg, var(--color-gold-peak) 0%, var(--color-gold-base) 100%);
-  color: var(--color-field-deep);
-  border: 1px solid var(--color-gold-light);
-  box-shadow: 0 4px 14px rgba(204, 168, 72, 0.2);
+  background-color: var(--color-ink-primary);
+  color: #ffffff;
+  border: 1px solid rgba(194, 153, 76, 0.35);
+  box-shadow: 0 3px 12px rgba(82, 36, 36, 0.15);
+}
+
+.btn-header:hover {
+  background-color: var(--color-ink-lead);
+  box-shadow: 0 4px 16px rgba(82, 36, 36, 0.22);
 }
 
 .btn-header .btn-text {
@@ -312,7 +322,7 @@ svg {
   letter-spacing: 0.02em;
 }
 
-/* Shiny Sweep Glow Automático */
+/* Shiny Sweep Glow Automático Contínuo */
 .btn-shiny {
   position: relative;
 }
@@ -326,7 +336,7 @@ svg {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.42) 50%,
+    rgba(255, 255, 255, 0.35) 50%,
     transparent 100%
   );
   transform: skewX(-22deg);
@@ -346,19 +356,24 @@ svg {
   }
 }
 
-/* Botão Primário CTA (Hero & Fechamento) */
+/* Botão Primário Hero: Sólido com Texto Branco (12.83:1) */
 .btn-primary {
   min-height: 52px;
   padding: 14px 28px;
-  background: linear-gradient(135deg, #e6c875 0%, var(--color-gold-peak) 45%, var(--color-gold-base) 100%);
-  color: var(--color-field-deep);
+  background-color: var(--color-ink-primary);
+  color: #ffffff;
   font-size: 1rem; /* 16px */
   font-weight: 600; /* C-255: teto 600 */
-  border: none;
+  border: 1px solid var(--color-gold-border);
   box-shadow: 
-    0 4px 20px rgba(204, 168, 72, 0.28),
-    0 1px 3px rgba(0, 0, 0, 0.35);
+    0 4px 18px rgba(82, 36, 36, 0.18),
+    0 1px 3px rgba(0, 0, 0, 0.08);
   z-index: 1;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-ink-lead);
+  box-shadow: 0 6px 22px rgba(82, 36, 36, 0.25);
 }
 
 .btn-primary .btn-content {
@@ -369,7 +384,7 @@ svg {
   z-index: 2;
 }
 
-/* Anel Cônico de Brilho no CTA Principal */
+/* Anel Cônico Dourado no CTA Principal */
 .btn-conic {
   position: relative;
   padding: 2px;
@@ -378,7 +393,7 @@ svg {
 .btn-conic-ring {
   position: absolute;
   inset: -2px;
-  border-radius: 9999px;
+  border-radius: calc(var(--radius-btn) + 2px);
   background: conic-gradient(
     from 0deg,
     var(--color-gold-shine),
@@ -389,7 +404,7 @@ svg {
   );
   animation: spinConic 5s linear infinite;
   z-index: 0;
-  opacity: 0.85;
+  opacity: 0.75;
 }
 
 @keyframes spinConic {
@@ -401,22 +416,22 @@ svg {
   }
 }
 
-/* Botão Secundário (Instagram) */
+/* Botão Secundário (Instagram) no Claro */
 .btn-secondary {
   min-height: 52px;
   padding: 13px 24px;
-  background: rgba(38, 21, 21, 0.6);
-  color: var(--color-white);
-  border: 1px solid var(--color-gold-border);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background-color: var(--color-field-warm);
+  color: var(--color-ink-primary);
+  border: 1px solid var(--color-line-medium);
+  box-shadow: 0 2px 8px rgba(82, 36, 36, 0.05);
   transition: all 0.25s var(--ease-smooth);
 }
 
 .btn-secondary:hover {
-  background: rgba(82, 36, 36, 0.4);
-  border-color: var(--color-gold-peak);
-  color: var(--color-white);
+  background-color: #ffffff;
+  border-color: var(--color-ink-primary);
+  color: var(--color-ink-primary);
+  box-shadow: 0 4px 14px rgba(82, 36, 36, 0.10);
 }
 
 .btn-large {
@@ -435,13 +450,13 @@ svg {
 }
 
 /* --------------------------------------------------------------------------
-   7. Hero Section (Primeira Dobra Monumental com Material e Luz)
+   7. Hero Section (Clean, Aberto, Tipografia em Tinta Vinho)
    -------------------------------------------------------------------------- */
 .hero-section {
   width: 100%;
   position: relative;
-  padding-top: 32px;
-  padding-bottom: 56px;
+  padding-top: 40px;
+  padding-bottom: 64px;
   padding-inline: max(16px, env(safe-area-inset-left));
   padding-right: max(16px, env(safe-area-inset-right));
 }
@@ -451,7 +466,7 @@ svg {
   margin-inline: auto;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 36px;
+  gap: 40px;
   align-items: center;
 }
 
@@ -463,50 +478,49 @@ svg {
   text-align: left;
 }
 
-/* Superfície 1 com Vinho-Material (V >= 25%): Credencial Tag */
+/* Credencial no Claro (Pílula em Off-White com Fio Quente) */
 .hero-credential-tag {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 18px;
-  padding: 6px 14px;
-  background: rgba(82, 36, 36, 0.28); /* Vinho material pontual */
-  border: 1px solid var(--color-gold-border);
-  border-radius: 9999px;
-  box-shadow: inset 0 1px 0 rgba(204, 168, 72, 0.15);
+  margin-bottom: 20px;
+  padding: 6px 16px;
+  background: var(--color-field-warm);
+  border: 1px solid var(--color-line-medium);
+  border-radius: var(--radius-pill);
 }
 
 .gold-bullet {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--color-gold-peak);
-  box-shadow: 0 0 8px var(--color-gold-halo);
+  background: var(--color-gold-base);
+  box-shadow: 0 0 6px var(--color-gold-halo);
 }
 
 .credential-text {
   font-family: var(--font-body);
   font-size: 0.875rem; /* 14px */
   font-weight: 600;
-  color: var(--color-gold-light);
-  letter-spacing: 0.04em;
+  color: var(--color-ink-primary);
+  letter-spacing: 0.03em;
 }
 
-/* Título Monumental do Hero (C-255: teto de peso 600) */
+/* Título Monumental em Tinta Vinho (C-255: teto 600) */
 .hero-title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 7.8vw, 4rem); /* 32px a 64px */
   line-height: 1.14;
   letter-spacing: -0.025em;
   font-weight: 600; /* C-255: teto 600 */
-  color: var(--color-white);
+  color: var(--color-ink-primary);
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
 }
 
 .hero-title-name {
-  color: var(--color-white);
+  color: var(--color-ink-lead);
   display: block;
 }
 
@@ -514,17 +528,17 @@ svg {
   display: block;
   font-size: 0.65em;
   font-weight: 600;
-  color: var(--color-gold-peak);
+  color: var(--color-ink-primary);
   letter-spacing: -0.015em;
   margin-top: 6px;
 }
 
-/* Texto de Apoio do Hero */
+/* Texto de Apoio */
 .hero-support {
   font-family: var(--font-body);
   font-size: 1.0625rem; /* 17px */
   line-height: 1.6;
-  color: var(--color-text-secondary);
+  color: var(--color-ink-body);
   max-width: 540px;
   margin-bottom: 28px;
 }
@@ -545,27 +559,27 @@ svg {
   align-items: center;
   gap: 8px;
   font-size: 0.9375rem; /* 15px */
-  color: var(--color-text-muted);
+  color: var(--color-ink-muted);
 }
 
 .phone-label {
-  color: var(--color-text-dim);
+  color: var(--color-ink-dim);
 }
 
 .phone-link {
   font-weight: 600;
-  color: var(--color-gold-light);
+  color: var(--color-ink-primary);
   letter-spacing: 0.02em;
-  border-bottom: 1px dotted var(--color-gold-border);
+  border-bottom: 1px dotted var(--color-line-medium);
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .phone-link:hover {
-  color: var(--color-gold-shine);
-  border-color: var(--color-gold-shine);
+  color: var(--color-ink-lead);
+  border-color: var(--color-ink-primary);
 }
 
-/* Superfície 2 com Vinho-Material (V >= 25%): Moldura da Foto */
+/* Visual do Hero: Moldura Clara Integrada (Sem Neon, Sem Halo Escuro) */
 .hero-visual {
   width: 100%;
   display: flex;
@@ -578,26 +592,17 @@ svg {
   position: relative;
   width: 100%;
   max-width: 480px;
-  border-radius: 20px;
+  border-radius: var(--radius-card);
   overflow: hidden;
-  border: 1px solid var(--color-gold-border);
-  border-top: 1px solid var(--color-gold-peak); /* Fio de luz na aresta superior */
-  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-line-medium);
+  background: var(--color-field-warm);
   box-shadow: 
-    0 16px 40px rgba(0, 0, 0, 0.55),
-    0 0 35px rgba(82, 36, 36, 0.25),
-    inset 0 1px 0 rgba(204, 168, 72, 0.3);
+    0 18px 45px rgba(82, 36, 36, 0.08),
+    0 2px 8px rgba(82, 36, 36, 0.04);
 }
 
 .hero-image-halo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 20%, rgba(204, 168, 72, 0.12) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: 1;
+  display: none; /* Removido no tema claro para acabamento clean */
 }
 
 .hero-photo {
@@ -614,28 +619,29 @@ svg {
   left: 0;
   right: 0;
   padding: 16px 20px;
-  background: linear-gradient(180deg, transparent 0%, rgba(12, 6, 6, 0.95) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.94) 85%);
   display: flex;
   flex-direction: column;
   z-index: 2;
+  border-top: 1px solid rgba(82, 36, 36, 0.06);
 }
 
 .caption-name {
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-ink-primary);
 }
 
 .caption-detail {
   font-family: var(--font-body);
   font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--color-gold-light);
+  color: var(--color-ink-muted);
 }
 
 /* --------------------------------------------------------------------------
-   8. Divisores de Seção (Luz e Fios Translúcidos)
+   8. Divisores de Seção (Fios Quentes de 1px)
    -------------------------------------------------------------------------- */
 .section-divider {
   width: 100%;
@@ -652,23 +658,23 @@ svg {
 .divider-line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-gold-hairline), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-line-medium), transparent);
 }
 
 .divider-gem {
   width: 6px;
   height: 6px;
   transform: rotate(45deg);
-  background: var(--color-gold-peak);
+  background: var(--color-gold-base);
   box-shadow: 0 0 6px var(--color-gold-halo);
 }
 
 /* --------------------------------------------------------------------------
-   9. Seções Contínuas (Sem Containers Fechados)
+   9. Seções Contínuas (Sem Caixas Cinzas, Fundo Aberto)
    -------------------------------------------------------------------------- */
 .section-flow {
   width: 100%;
-  padding-block: 40px;
+  padding-block: 48px;
   padding-inline: max(16px, env(safe-area-inset-left));
   padding-right: max(16px, env(safe-area-inset-right));
 }
@@ -689,7 +695,7 @@ svg {
   font-size: 0.8125rem; /* 13px */
   font-weight: 600;
   letter-spacing: 0.12em;
-  color: var(--color-gold-peak);
+  color: var(--color-ink-primary);
   text-transform: uppercase;
   margin-bottom: 12px;
 }
@@ -700,18 +706,18 @@ svg {
   line-height: 1.2;
   letter-spacing: -0.02em;
   font-weight: 600; /* C-255: teto 600 */
-  color: var(--color-white);
+  color: var(--color-ink-primary);
   margin-bottom: 14px;
 }
 
 .section-lead {
   font-size: 1.0625rem;
   line-height: 1.6;
-  color: var(--color-text-secondary);
+  color: var(--color-ink-body);
 }
 
 /* --------------------------------------------------------------------------
-   10. Pilares de Atuação (Seção 01)
+   10. Pilares de Atuação (Seção 01: Fios em vez de Caixas)
    -------------------------------------------------------------------------- */
 .pillars-grid {
   display: grid;
@@ -722,22 +728,24 @@ svg {
 .pillar-item {
   position: relative;
   padding: 24px;
-  border-top: 1px solid var(--color-gold-border);
-  background: linear-gradient(180deg, rgba(38, 21, 21, 0.35) 0%, transparent 100%);
+  border-top: 1px solid var(--color-line-medium);
+  background: var(--color-field-warm);
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  transition: border-color var(--duration-normal) ease;
+  transition: border-color var(--duration-base) ease, transform var(--duration-base) var(--ease-smooth);
 }
 
 .pillar-item:hover {
-  border-top-color: var(--color-gold-peak);
+  border-top-color: var(--color-ink-primary);
+  transform: translateY(-2px);
 }
 
 .pillar-number {
   font-family: var(--font-display);
   font-size: 1.125rem;
   font-weight: 600;
-  color: var(--color-gold-peak);
+  color: var(--color-gold-deep);
   margin-bottom: 10px;
   letter-spacing: 0.05em;
 }
@@ -746,7 +754,7 @@ svg {
   font-family: var(--font-display);
   font-size: 1.25rem; /* 20px */
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-ink-primary);
   margin-bottom: 10px;
   line-height: 1.25;
 }
@@ -754,7 +762,7 @@ svg {
 .pillar-desc {
   font-size: 0.9375rem; /* 15px */
   line-height: 1.6;
-  color: var(--color-text-secondary);
+  color: var(--color-ink-body);
 }
 
 /* --------------------------------------------------------------------------
@@ -769,9 +777,14 @@ svg {
 .step-card {
   position: relative;
   padding: 24px;
-  border-left: 2px solid var(--color-gold-peak);
-  background: linear-gradient(90deg, rgba(38, 21, 21, 0.35) 0%, transparent 100%);
-  transition: transform var(--duration-normal) var(--ease-smooth);
+  border-left: 2px solid var(--color-gold-base);
+  background: var(--color-field-warm);
+  border-radius: 0 8px 8px 0;
+  transition: transform var(--duration-base) var(--ease-smooth);
+}
+
+.step-card:hover {
+  transform: translateX(3px);
 }
 
 .step-header {
@@ -787,11 +800,11 @@ svg {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-gold-peak);
+  color: var(--color-ink-primary);
 }
 
 .step-indicator {
-  color: var(--color-gold-light);
+  color: var(--color-gold-base);
   font-size: 0.875rem;
 }
 
@@ -799,7 +812,7 @@ svg {
   font-family: var(--font-display);
   font-size: 1.25rem; /* 20px */
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-ink-primary);
   margin-bottom: 10px;
   line-height: 1.3;
 }
@@ -807,11 +820,12 @@ svg {
 .step-desc {
   font-size: 0.9375rem;
   line-height: 1.6;
-  color: var(--color-text-secondary);
+  color: var(--color-ink-body);
 }
 
 /* --------------------------------------------------------------------------
-   12. Seção 03: Superfície 3 com Vinho-Material (Painel de Fechamento)
+   12. Seção 03: O BLOCO FOCAL ESCURO ÚNICO (#contato)
+   (Vinho profundo #2b1111 · Área <= 20% da página · Contraste 17.63:1)
    -------------------------------------------------------------------------- */
 .section-contact {
   padding-block: 56px 64px;
@@ -824,23 +838,38 @@ svg {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 24px;
-  border: 1px solid var(--color-gold-border);
-  border-top: 1px solid var(--color-gold-peak); /* Fio de luz na aresta superior */
-  border-radius: 24px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(82, 36, 36, 0.35) 0%, rgba(20, 11, 11, 0.95) 100%);
+  padding: 48px 28px;
+  border-radius: var(--radius-card);
+  background-color: var(--color-focal-bg);
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(82, 36, 36, 0.45) 0%, rgba(43, 17, 17, 0.98) 100%);
+  border: 1px solid var(--color-gold-hairline);
+  border-top: 1px solid var(--color-gold-peak); /* Fio de ouro na aresta superior */
   box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(204, 168, 72, 0.28);
+    0 24px 60px rgba(43, 17, 17, 0.35),
+    inset 0 1px 0 rgba(204, 168, 72, 0.3);
+  color: var(--color-focal-text);
+}
+
+.contact-cta-wrapper .section-kicker {
+  color: var(--color-gold-peak); /* No bloco escuro, dourado tem 6.68:1 */
 }
 
 .contact-title {
+  color: #ffffff !important; /* Contraste 17.63:1 sobre #2b1111 */
   margin-bottom: 16px;
 }
 
 .contact-lead {
+  color: var(--color-focal-text) !important;
   max-width: 580px;
   margin-bottom: 32px;
+}
+
+/* Botão de Fechamento com Contraste Máximo */
+.contact-cta-wrapper .btn-primary {
+  background: linear-gradient(135deg, #e6c875 0%, var(--color-gold-peak) 45%, var(--color-gold-base) 100%);
+  color: #1a0808; /* Contraste alto sobre o dourado */
+  border: none;
 }
 
 .contact-actions-cluster {
@@ -857,8 +886,8 @@ svg {
   justify-content: center;
   gap: 20px;
   width: 100%;
-  padding-top: 16px;
-  border-top: 1px solid var(--color-gold-hairline);
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .contact-detail-line {
@@ -868,22 +897,22 @@ svg {
   font-size: 0.9375rem;
 }
 
-.detail-label {
-  color: var(--color-text-dim);
+.contact-cta-wrapper .detail-label {
+  color: var(--color-focal-muted);
 }
 
-.detail-value {
+.contact-cta-wrapper .detail-value {
   color: var(--color-gold-light);
   font-weight: 600;
 }
 
 /* --------------------------------------------------------------------------
-   13. Rodapé
+   13. Rodapé Claro / Off-White Nobre
    -------------------------------------------------------------------------- */
 .site-footer {
   width: 100%;
-  border-top: 1px solid var(--color-gold-hairline);
-  background-color: var(--color-field-deep);
+  border-top: 1px solid var(--color-line-medium);
+  background-color: var(--color-field-warm);
   padding-block: 48px 36px;
   padding-inline: max(16px, env(safe-area-inset-left));
   padding-right: max(16px, env(safe-area-inset-right));
@@ -912,7 +941,7 @@ svg {
 
 .footer-pro {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: var(--color-ink-muted);
 }
 
 .footer-contacts {
@@ -923,12 +952,12 @@ svg {
 
 .footer-link {
   font-size: 0.9375rem;
-  color: var(--color-gold-light);
+  color: var(--color-ink-primary);
   transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-  color: var(--color-gold-shine);
+  color: var(--color-gold-deep);
 }
 
 .footer-legal-row {
@@ -936,23 +965,23 @@ svg {
   flex-direction: column;
   gap: 8px;
   padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--color-line-subtle);
   font-size: 0.8125rem;
-  color: var(--color-text-dim);
+  color: var(--color-ink-dim);
 }
 
 .footer-copy {
-  color: var(--color-text-dim);
+  color: var(--color-ink-dim);
 }
 
 .footer-sub {
-  color: var(--color-gold-base);
+  color: var(--color-ink-primary);
   letter-spacing: 0.05em;
   font-weight: 600;
 }
 
 /* --------------------------------------------------------------------------
-   14. Página de Erro 404
+   14. Página de Erro 404 (Tema Claro)
    -------------------------------------------------------------------------- */
 .error-page {
   display: flex;
@@ -980,7 +1009,7 @@ svg {
   font-size: 5rem;
   font-weight: 600;
   line-height: 1;
-  color: var(--color-gold-peak);
+  color: var(--color-ink-primary);
   margin-bottom: 12px;
 }
 
@@ -988,13 +1017,13 @@ svg {
   font-family: var(--font-display);
   font-size: 1.75rem;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-ink-primary);
   margin-bottom: 12px;
 }
 
 .error-desc {
   font-size: 1rem;
-  color: var(--color-text-secondary);
+  color: var(--color-ink-body);
   margin-bottom: 28px;
 }
 
