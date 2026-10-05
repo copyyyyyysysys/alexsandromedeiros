@@ -4,6 +4,7 @@
   "description": "Alexsandro Medeiros · Consultoria Imobiliária · Creci 6469",
   "main": "server.js",
   "scripts": {
+    "build": "echo 'Build ok'",
     "dev": "node server.js",
     "start": "node server.js"
   },
