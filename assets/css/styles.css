@@ -21,6 +21,13 @@
   --color-ink-muted:     #6b4e4e; /* Apoio e Rótulos · Contraste 6.4:1 */
   --color-ink-dim:       #8c6f6e; /* Legendas Discretas · Contraste 4.2:1 */
 
+  /* Vinho Oficial do Cartão como Material Focal (V 32.2% — restrito a ≤ 3 superfícies) */
+  --color-wine-material:      #522424; /* Vinho Oficial do Cartão */
+  --color-wine-material-rich: #5e2828; /* Vinho Enriquecido / Hover */
+  --color-wine-glow:          rgba(82, 36, 36, 0.25);
+  --color-white:              #ffffff;
+  --color-cream:              #f7f2ea;
+
   /* Linhas & Fios Quentes (Zero Cinzas de Biblioteca) */
   --color-line-subtle:   rgba(82, 36, 36, 0.08);
   --color-line-medium:   rgba(82, 36, 36, 0.14);
@@ -383,15 +390,17 @@ svg {
   }
 }
 
-/* Botão Primário Hero: Sólido com Texto Branco (12.83:1) */
+/* Botão Primário Hero: Vinho Oficial com Delimitador Dourado e Texto Branco (12.83:1) */
 .btn-primary {
   height: 52px;
   min-height: 52px;
   max-height: 52px;
   padding: 14px 28px;
   min-width: 262px;
-  background-color: var(--color-ink-primary);
-  color: #ffffff;
+  background-color: var(--color-wine-material);
+  color: var(--color-white);
+  border: 1px solid var(--color-gold-base);
+  box-shadow: 0 4px 14px rgba(82, 36, 36, 0.25), 0 1px 3px rgba(0, 0, 0, 0.08);
   font-size: 1rem; /* 16px */
   font-weight: 600; /* C-255: teto 600 */
   z-index: 1;
@@ -403,6 +412,15 @@ svg {
   gap: 10px;
   position: relative;
   z-index: 2;
+  color: var(--color-white);
+}
+
+.btn-primary .btn-text {
+  color: var(--color-white);
+}
+
+.btn-primary .btn-icon {
+  color: var(--color-white);
 }
 
 /* Anel Cônico Dourado no CTA Principal (C-285: nenhuma propriedade de layout/box-model) */
@@ -484,12 +502,9 @@ svg {
     background-color: var(--color-ink-lead);
   }
 
-  .btn-primary:hover {
-    background-color: var(--color-ink-lead);
-  }
-
+  .btn-primary:hover,
   .contact-cta-wrapper .btn-primary:hover {
-    background-position: 100% 50%;
+    background-color: var(--color-wine-material-rich) !important;
   }
 
   .btn-secondary:hover {
@@ -688,26 +703,40 @@ svg {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 16px 20px;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.94) 85%);
+  padding: 18px 20px 16px;
+  background: linear-gradient(
+    180deg, 
+    transparent 0%, 
+    rgba(14, 7, 7, 0.72) 20%, 
+    rgba(14, 7, 7, 0.95) 55%, 
+    rgba(14, 7, 7, 0.98) 100%
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
+  gap: 3px;
   z-index: 2;
-  border-top: 1px solid rgba(82, 36, 36, 0.06);
+  border-top: 1px solid rgba(204, 168, 72, 0.24);
 }
 
 .caption-name {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.0625rem; /* 17px */
   font-weight: 600;
-  color: var(--color-ink-primary);
+  color: #ffffff; /* Contraste 19.7:1 sobre fundo escurecido */
+  line-height: 1.25;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
 }
 
 .caption-detail {
   font-family: var(--font-body);
-  font-size: 0.875rem; /* 14px - Piso rigoroso */
-  font-weight: 500;
-  color: var(--color-ink-muted);
+  font-size: 0.875rem; /* 14px - Piso rigoroso atendido */
+  font-weight: 600; /* Peso 600 para nitidez perfeita sobre imagem */
+  color: var(--color-gold-light); /* #deb86a - Dourado oficial */
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
 }
 
 /* --------------------------------------------------------------------------
@@ -935,14 +964,19 @@ svg {
   margin-bottom: 32px;
 }
 
-/* Botão de Fechamento com Contraste Máximo */
+/* Botão de Fechamento: Vinho Oficial Unificado com Texto Branco (12.83:1) */
 .contact-cta-wrapper .btn-primary {
-  background: linear-gradient(135deg, #e6c875 0%, var(--color-gold-peak) 45%, var(--color-gold-base) 100%);
-  background-size: 150% 150%;
-  background-position: 0% 50%;
-  color: #1a0808; /* Contraste alto sobre o dourado */
-  border: 1px solid var(--color-gold-border);
-  box-shadow: 0 4px 14px rgba(82, 36, 36, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05);
+  background: var(--color-wine-material);
+  background-color: var(--color-wine-material);
+  color: var(--color-white);
+  border: 1px solid var(--color-gold-base);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(194, 153, 76, 0.2);
+}
+
+.contact-cta-wrapper .btn-primary .btn-content,
+.contact-cta-wrapper .btn-primary .btn-text,
+.contact-cta-wrapper .btn-primary .btn-icon {
+  color: var(--color-white) !important;
 }
 
 .contact-actions-cluster {
@@ -1197,8 +1231,12 @@ svg {
   }
 
   .hero-image-frame {
-    max-width: 260px;
+    max-width: 340px;
     margin-inline: auto;
+  }
+
+  .hero-image-caption {
+    padding: 14px 16px 14px;
   }
 
   .section-flow {
@@ -1236,6 +1274,10 @@ svg {
 
   .contact-cta-wrapper {
     padding: 28px 12px;
+  }
+
+  .hero-image-caption {
+    padding: 12px 10px 10px;
   }
 }
 
